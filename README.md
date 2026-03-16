@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://img.icons8.com/fluency/96/fountain-pen.png" alt="InkEcho Logo" width="80" />
-</p>
+
 
 <h1 align="center">InkEcho</h1>
 <h2 align="center">墨语回响</h2>
