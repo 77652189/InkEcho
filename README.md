@@ -1,56 +1,51 @@
-
-
 <h1 align="center">InkEcho</h1>
 <h2 align="center">墨语回响</h2>
 
 <p align="center">
-  <strong>智能化的小说多维风格重构工作台</strong>
+  <strong>小说多维风格重构工作台 —— 设计稿</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/contributors-1-orange.svg" alt="Contributors" />
-  <img src="https://img.shields.io/badge/forks-0-blue.svg" alt="Forks" />
-  <img src="https://img.shields.io/badge/stars-0-red.svg" alt="Stars" />
+  <img src="https://img.shields.io/badge/status-设计稿，无实现-BA7517?style=flat-square" alt="Status" />
   <img src="https://img.shields.io/badge/license-GPL--3.0-green.svg" alt="License" />
 </p>
 
 ---
 
-## 🛠️ 目前的功能 项目的愿景
+## ⚠️ 这个仓库里没有代码
 
-- [x] **基于 LangGraph 的多智能体流**：状态感知，拒绝机械式翻译
-- [x] **旧瓶装新酒**：精准提取叙事骨架，注入全新世界观灵魂
-- [x] **全自动批量精修**：一键开启章节级风格重写流水线
-- [x] **语义锚点记忆**：内置 RAG 向量库，改写千章也不“吃书”
-- [x] **交互式平行编辑**：原文与改写内容段落级对齐，实时微调
-- [x] **不仅是赛博朋克**：支持无限风格模版扩展，从克苏鲁到古典歌剧
-- [x] **动态逻辑稽查**：内置 Reviewer 节点，自动拦截 OOC 与逻辑硬伤
+本仓库目前**只有这份 README**。下面写的是一份**设计构想**，不是已经实现的功能。
+没有可运行的程序，没有可安装的包，也没有测试。
+
+保留它是因为这套设计本身想清楚了一些事（见下）。如果你是来找可用代码的，这里没有。
 
 ---
 
-## 🌟 核心特性 (Features)
+## 构想：它想解决什么
 
-### 1. 🧬 叙事骨架提取 (Architect Node)
-利用 LLM 深度分析原著，将“故事讲了什么”与“故事是用什么风格讲的”分离。保留人物动机与核心冲突，只更换叙事皮肤。
+把一部小说换一种叙事风格重写，难点不在词汇替换，而在**换皮不换骨**：
+人物动机、核心冲突、前后设定必须保持一致，变的只有叙事表层。
 
-### 2. 🤖 三模态协同架构 (Tri-Agent Workflow)
-* **Writer (作家)**：负责将原著“重构”为目标风格。
-* **Critic (审阅者)**：负责对比原著，确保关键剧情点没有丢失。
-* **Anchor (记忆官)**：负责维护长效记忆，确保改写后的设定前后一致。
+拟采用的分工：
 
-### 3. 🎭 沉浸式风格转译
-不再是简单的词汇替换。通过 LangGraph 的状态管理，系统能够理解“青龙偃月刀”在赛博朋克中应该是“高周波热能切割大刀”，在奇幻世界中则是“附带龙魂的传奇重刃”。
+| 节点 | 职责 |
+|---|---|
+| **Architect** | 分析原著，把"故事讲了什么"与"用什么风格讲"分离出来 |
+| **Writer** | 按目标风格重写 |
+| **Critic** | 对比原著，拦截丢失的关键剧情点与 OOC |
+| **Anchor** | 维护长效记忆，保证改写千章后设定不漂移 |
 
----
+计划用 LangGraph 做状态机编排，用向量库做语义锚点记忆，让"青龙偃月刀"在赛博朋克里
+稳定地落成"高周波热能切割大刀"、在奇幻世界里稳定地落成"附带龙魂的传奇重刃"——
+关键是**稳定**，同一个设定在第 3 章和第 300 章要翻成同一个东西。
 
-## 🚀 快速开始 (Quick Start)
+## 构想里还没解决的问题
 
-### 环境准备
-- **OS**: Windows / macOS / Linux
-- **Python**: 3.10+ (建议使用 venv 虚拟环境)
+- 长文本一致性靠向量检索能撑多久，没有验证过。
+- Critic 判"剧情点丢失"需要可量化的判据，目前只有一个模糊的想法。
+- 风格模版如何表达才能既可扩展又不沦为一段 prompt，没有答案。
 
-### 安装步骤
-1. **克隆项目**
-   ```bash
-   git clone [https://github.com/YourUsername/InkEcho.git](https://github.com/YourUsername/InkEcho.git)
-   cd InkEcho
+## 状态
+
+设计稿，未开工。若要继续，第一步应该是在**一章**的尺度上把 Architect → Writer → Critic
+跑通，先回答"一致性能不能守住"这个问题，再谈批量。
